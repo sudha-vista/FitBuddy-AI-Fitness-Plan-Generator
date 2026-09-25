@@ -1,117 +1,59 @@
 # FitBuddy – AI Fitness Plan Generator
 
-FastAPI + Jinja2 + SQLite/SQLAlchemy + Google Gemini application for personalized 7-day workout plans, nutrition/recovery tips, feedback-based plan updates, and an admin view.
+FitBuddy is an AI-powered web application that generates personalized 7-day workout plans based on a user's fitness information, goals, and preferred workout intensity.
 
-## Structure
+The application uses FastAPI for the backend, Jinja2 templates for the web interface, SQLite/SQLAlchemy for data storage, and Google Gemini for AI-generated workout and nutrition/recovery recommendations.
+
+## Features
+
+- Personalized 7-day workout plan generation
+- Fitness-goal based recommendations
+- Workout intensity selection
+- AI-generated workout plans using Google Gemini
+- General nutrition and recovery tips
+- Feedback-based workout plan updates
+- User and plan data storage using SQLite
+- Admin view for managing users
+- REST API endpoints
+- Input validation and safety-oriented prompts
+- Automated tests using pytest
+- Docker support
+
+## Technologies Used
+
+- Python
+- FastAPI
+- Jinja2
+- SQLAlchemy
+- SQLite
+- Google Gemini API
+- HTML/CSS/JavaScript
+- Pytest
+- Docker
+
+## Project Structure
 
 ```text
-FitBuddy/
+FitBuddy-AI-Fitness-Plan-Generator/
+│
+├── 01-Brainstorming-and-Ideation/
+├── 02-Requirement-Analysis/
+├── 03-Project-Design/
+├── 04-Project-Planning/
+├── 05-Project-Development/
+├── 06-Project-Testing/
+├── 07-Project-Documentation/
+├── 08-Project-Demonstration/
+│
 ├── app/
-│   ├── main.py config.py database.py models.py schemas.py dependencies.py routes.py
-│   ├── ai/
-│   │   ├── gemini_client.py workout_generator.py nutrition_generator.py plan_updater.py
-│   └── services/plan_service.py
-├── templates/{base,index,result,all_users}.html
-├── static/css/style.css
-├── static/js/app.js
-├── tests/{conftest,test_app}.py
-├── docs/01_brainstorming.md ... 08_demonstration.md
-├── .env.example .gitignore requirements.txt Dockerfile README.md
-```
+├── templates/
+├── tests/
+│
+├── .gitignore
+├── AGENTS.md
+├── Dockerfile
+├── README.md
+├── SUBMISSION_README.md
+├── env.example
+└── requirements.txt
 
-## Setup in VS Code
-
-Windows PowerShell:
-
-```powershell
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-Command Prompt:
-
-```cmd
-python -m venv .venv
-.venv\Scriptsctivate
-pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-Copy `.env.example` to `.env` and set:
-
-```env
-GEMINI_API_KEY=your_key
-```
-
-For testing without a key:
-
-```env
-MOCK_AI=true
-```
-
-## Run
-
-```bash
-uvicorn app.main:app --reload
-```
-
-Open:
-- http://127.0.0.1:8000
-- http://127.0.0.1:8000/docs
-- http://127.0.0.1:8000/view-all-users
-
-## Test
-
-```bash
-pytest -q
-```
-
-## API
-
-`GET /api/health`
-
-`POST /api/plans`
-
-```json
-{
-  "username": "Alex",
-  "user_id": "alex001",
-  "age": 24,
-  "weight": 68,
-  "goal": "muscle gain",
-  "intensity": "medium"
-}
-```
-
-`GET /api/users/{user_id}`
-
-`POST /api/plans/{user_id}/feedback`
-
-```json
-{"feedback":"Add more cardio and one extra rest day."}
-```
-
-`GET /api/users`
-
-`DELETE /api/users/{user_id}`
-
-## Gemini model note
-
-The supplied document specifies Gemini 1.5 Pro and Gemini Flash. Those model references are legacy now, so the project uses configurable current model IDs:
-
-```env
-GEMINI_WORKOUT_MODEL=gemini-2.5-pro
-GEMINI_TIP_MODEL=gemini-3.8-flash
-```
-
-If your API account does not have access to the workout model, set `GEMINI_WORKOUT_MODEL` to an available current Gemini model.
-
-## Safety
-
-FitBuddy is general wellness software, not medical care. AI output is not a diagnosis or prescription.
-
-Do not commit `.env`, API keys, `fitbuddy.db`, or `.venv`.
-
-The `docs/` folder contains the eight phase-wise documents requested by the supplied project instructions.
