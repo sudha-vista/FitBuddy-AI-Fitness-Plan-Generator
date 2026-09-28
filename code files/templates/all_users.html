@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy | Admin Dashboard{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">ADMIN VIEW</span><h1>All Users & Plans</h1></div></div>
+{% if users %}{% for user in users %}<section class="card admin-card"><div class="admin-header">
+<div><h2>{{ user.username }}</h2><p>{{ user.user_id }} · {{ user.age }} years · {{ user.weight }} kg</p></div>
+<div><span class="badge">{{ user.goal }}</span> <span class="badge">{{ user.intensity }}</span></div></div>
+{% if user.plan %}<details><summary>Original plan</summary><pre class="plan">{{ user.plan.original_plan }}</pre></details>
+<details><summary>Updated plan</summary>{% if user.plan.updated_plan %}<pre class="plan">{{ user.plan.updated_plan }}</pre><p><strong>Feedback:</strong> {{ user.plan.feedback }}</p>{% else %}<p class="muted">No feedback update submitted.</p>{% endif %}</details>{% endif %}
+</section>{% endfor %}{% else %}<div class="card empty">No users have been registered yet.</div>{% endif %}
+{% endblock %}

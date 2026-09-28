@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}FitBuddy | Your Plan{% endblock %}
+{% block content %}
+<div class="page-heading"><div><span class="eyebrow">PERSONALIZED PLAN</span><h1>{{ username }}'s FitBuddy Plan</h1></div><a class="secondary" href="/">Create Another</a></div>
+<section class="profile grid four">
+<div><span>Name</span><strong>{{ username }}</strong></div><div><span>User ID</span><strong>{{ user_id }}</strong></div>
+<div><span>Age</span><strong>{{ age }}</strong></div><div><span>Weight</span><strong>{{ weight }} kg</strong></div>
+<div><span>Goal</span><strong>{{ goal }}</strong></div><div><span>Intensity</span><strong>{{ intensity }}</strong></div>
+</section>
+<section class="card"><h2>Original 7-Day Workout Plan</h2><pre class="plan">{{ workout_plan }}</pre></section>
+{% if updated_plan %}<section class="card updated"><div class="section-title"><h2>Updated Workout Plan</h2><span class="badge">Updated</span></div>
+<p class="feedback"><strong>Feedback:</strong> {{ feedback }}</p><pre class="plan">{{ updated_plan }}</pre></section>{% endif %}
+<section class="card tip"><h2>Nutrition / Recovery Tip</h2><p>{{ nutrition_tip }}</p></section>
+<section class="card"><h2>Refine Your Plan</h2><p class="muted">Examples: “Add more cardio”, “Include another rest day”, or “Make Day 5 lower intensity”.</p>
+<form method="post" action="/submit-feedback"><input type="hidden" name="user_id" value="{{ user_id }}"><textarea name="feedback" required maxlength="1000" placeholder="Tell FitBuddy what you want to change..."></textarea>
+<button class="primary" type="submit">Update Plan with AI</button></form></section>
+{% endblock %}
