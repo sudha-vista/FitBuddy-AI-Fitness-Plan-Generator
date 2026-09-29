@@ -106,12 +106,3 @@ GEMINI_WORKOUT_MODEL=gemini-2.5-pro
 GEMINI_TIP_MODEL=gemini-3.8-flash
 ```
 
-If your API account does not have access to the workout model, set `GEMINI_WORKOUT_MODEL` to an available current Gemini model.
-
-## Safety
-
-FitBuddy is general wellness software, not medical care. AI output is not a diagnosis or prescription.
-
-Do not commit `.env`, API keys, `fitbuddy.db`, or `.venv`.
-
-The `docs/` folder contains the eight phase-wise documents requested by the supplied project instructions.
